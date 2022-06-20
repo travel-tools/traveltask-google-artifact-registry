@@ -59,17 +59,3 @@ def perform(config: TaskConfig):
     else:
         raise ValueError(f"Uknown action (valid options are 'upload' or 'install'): {config.action}")
 
-
-if __name__ == '__main__':
-
-    perform(
-        TaskConfig(
-            context=r"C:\Users\f.pugliese\projects\personal\travel\src\travel\tests\data\complexproject\common",
-            task="upload",
-            project="mlr-core",
-            region="europe-west8",
-            repository="mlr-pypi-registry",
-            action="install",
-            packages="pcommon==0.0.0"
-        )
-    )
