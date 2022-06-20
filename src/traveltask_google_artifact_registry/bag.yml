@@ -1,2 +1,4 @@
 requirements:
-  - google-cloud-artifact-registry==1.2.1
+  - travel==0.6.2
+  - twine==4.0.1
+  - keyrings.google-artifactregistry-auth==1.0.0
