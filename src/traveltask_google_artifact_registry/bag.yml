@@ -1,0 +1,2 @@
+requirements:
+  - google-cloud-artifact-registry==1.2.1
