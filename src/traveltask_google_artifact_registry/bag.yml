@@ -1,4 +1,7 @@
 requirements:
   - travel==0.6.2
   - twine==4.0.1
+  - keyring==23.6.0  # Not strictly required
   - keyrings.google-artifactregistry-auth==1.0.0
+  - pip==22.1.2
+  - pyasn1==0.4.8  # It seems to be not installed
