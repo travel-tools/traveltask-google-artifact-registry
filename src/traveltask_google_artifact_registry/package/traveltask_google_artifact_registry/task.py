@@ -34,7 +34,7 @@ def _install(bag: Bag, python: Python, config: TaskConfig):
     # Install the packages
     pip = Pip(python)
     index_url = _get_index_url(config)+"simple/"
-    pip.run(f"install -vv --extra-index-url {index_url} --target {site_packages} {config.packages}")
+    pip.run(f"install --extra-index-url {index_url} --target {site_packages} {config.packages}")
 
 
 def _upload(bag: Bag, python: Python, config: TaskConfig):

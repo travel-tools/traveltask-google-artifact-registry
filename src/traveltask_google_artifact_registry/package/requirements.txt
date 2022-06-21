@@ -18,6 +18,7 @@ jinja2-time==0.2.0
 keyring==23.6.0
 keyrings.google-artifactregistry-auth==1.0.0
 MarkupSafe==2.1.1
+pip==22.1.2
 pkginfo==1.8.3
 pluggy==1.0.0
 pyasn1==0.4.8
