@@ -12,5 +12,5 @@ class TaskConfig:
     project: str
     region: str
     repository: str
-    action: str  # Can be upload or install
+    action: str  # Can be upload or install or fix_requirements
     packages: str = None
