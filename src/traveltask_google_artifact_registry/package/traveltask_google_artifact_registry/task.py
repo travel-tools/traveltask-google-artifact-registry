@@ -6,11 +6,39 @@ from travel.config.reader import parse_bags
 from travel.tools.pip import Pip
 from travel.tools.python import Python
 from travel.tools.venv import Virtualenv
+
 from traveltask_google_artifact_registry.config import TaskConfig
+
+
+PyPI_keyrings_google_artifact_registry_auth = "keyrings.google-artifactregistry-auth"
 
 
 def _get_index_url(config: TaskConfig):
     return f"https://{config.region}-python.pkg.dev/{config.project}/{config.repository}/"
+
+
+def _fix_requirements(bag: Bag, python: Python, config: TaskConfig) -> None:
+    # Get the right venv
+    env = Virtualenv(bag)
+    
+    if not os.path.exists(env.path):
+        raise ValueError(
+            "The venv must be created before running the 'fix_requirements' action. "
+            "Did you forget to run 'travel setup'?"
+        )
+        
+    with open(env.requirements_file, "rt") as f:
+        requirements = f.read().splitlines()
+        
+    if PyPI_keyrings_google_artifact_registry_auth not in requirements:
+        requirements.append(PyPI_keyrings_google_artifact_registry_auth)
+        
+    index_url = _get_index_url(config) + "simple"
+    requirements.append(f"--extra-index-url {index_url}")
+    
+    with open(env.requirements_file, "wt") as f:
+        for requirement in requirements:
+            f.write(f"{requirement}\n")
 
 
 def _install(bag: Bag, python: Python, config: TaskConfig):
@@ -56,5 +84,7 @@ def perform(config: TaskConfig):
         _install(bag, python, config)
     elif config.action == "upload":
         _upload(bag, python, config)
+    elif config.action == "fix_requirements":
+        _fix_requirements(bag, python, config)
     else:
-        raise ValueError(f"Uknown action (valid options are 'upload' or 'install'): {config.action}")
+        raise ValueError(f"Uknown action (valid options are 'upload', 'install' or 'fix_requirements'): {config.action}")
