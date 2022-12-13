@@ -34,7 +34,7 @@ def _fix_requirements(bag: Bag, python: Python, config: TaskConfig) -> None:
         requirements.append(PyPI_keyrings_google_artifact_registry_auth)
         
     index_url = _get_index_url(config) + "simple"
-    requirements.append(f"--extra-index-url {index_url}")
+    requirements.insert(0, f"--extra-index-url {index_url}")
     
     with open(env.requirements_file, "wt") as f:
         for requirement in requirements:
