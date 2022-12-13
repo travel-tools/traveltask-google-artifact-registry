@@ -13,7 +13,7 @@ _NAME = "traveltask_google_artifact_registry"
 setup(
     name=_NAME,
     version="0.0.0",
-    description="A Travel Task to download/upload a Python package from/to Google Artifact Registry using Pip",
+    description="A Travel task to download/upload a Python package from/to Google Artifact Registry using pip",
     packages=find_packages(),
     include_package_data=True,
     install_requires=requirements
