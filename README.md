@@ -10,7 +10,7 @@ To upload a package to Google Artifact Registry using the task, add the followin
 tasks:
   takeoff:
     instead:
-      - task: traveltask_google_artifact_registry==0.0.1
+      - task: traveltask_google_artifact_registry
         name: upload-to-some-registry
         config:
           project: <project>
@@ -27,7 +27,7 @@ To install a package from Google Artifact Registry using the task, add the follo
 tasks:
   setup:
     pre:
-      - task: traveltask_google_artifact_registry==0.0.1
+      - task: traveltask_google_artifact_registry
         name: download-from-some-registry
         config:
           project: <project>
@@ -37,7 +37,7 @@ tasks:
           packages: <package>[=<version>]
           
     post:
-      - task: traveltask_google_artifact_registry==0.0.1
+      - task: traveltask_google_artifact_registry
         name: fix-requirements
         config:
           project: <project>
@@ -45,3 +45,5 @@ tasks:
           repository: <repository>
           action: fix_requirements
 ```
+
+**N.B.:** In the above example, the Google Artifact Registry config must match between the stages
