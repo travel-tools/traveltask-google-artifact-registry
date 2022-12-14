@@ -47,7 +47,7 @@ def _fix_venv_requirements(env: BaseVirtualenv, index_url: str) -> None:
 
 
 def _fix_requirements(bag: Bag, python: Python, config: TaskConfig) -> None:
-    index_url = _get_index_url(config) + "simple"
+    index_url = _get_index_url(config) + "simple/"
     
     # It fixes the main venv
     env = Virtualenv(bag)
