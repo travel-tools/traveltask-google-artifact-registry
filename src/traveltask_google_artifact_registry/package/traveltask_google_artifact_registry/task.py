@@ -11,9 +11,6 @@ from travel.tools.venv import Virtualenv
 from traveltask_google_artifact_registry.config import TaskConfig
 
 
-PyPI_keyrings_google_artifact_registry_auth = "keyrings.google-artifactregistry-auth"
-
-
 def _get_index_url(config: TaskConfig):
     return f"https://{config.region}-python.pkg.dev/{config.project}/{config.repository}/"
 
@@ -28,16 +25,6 @@ def _fix_venv_requirements(env: BaseVirtualenv, index_url: str) -> None:
         
     with open(env.requirements_file, "rt") as f:
         requirements = f.read().splitlines()
-        
-    has_keyrings = False
-    
-    for requirement in requirements:
-        if PyPI_keyrings_google_artifact_registry_auth in requirement:
-            has_keyrings = True
-            break
-
-    if not has_keyrings:
-        requirements.append(PyPI_keyrings_google_artifact_registry_auth)
         
     requirements.insert(0, f"--extra-index-url {index_url}")
     
